@@ -1,0 +1,18 @@
+extends base
+
+
+block content 
+          main 
+            .login-container
+                form.login-form
+                    h2 Log into your account
+                    .form-group
+                        label(for="email") Email
+                        input(type="email", id="email", name="email", required)
+                    .form-group
+                        label(for="password") Password
+                        input(type="password", id="password", name="password", value="pass1234" required)
+                    button.login-btn(type="submit") Login
+                    p.signup-link
+                        | Don't have an account? 
+                        a(href="/signup") Sign up

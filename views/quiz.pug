@@ -1,0 +1,27 @@
+extends base
+
+mixin quizQuestion(question, answers, correctAnswer, index)  
+  .quiz-question-container.hidden(data-correct=`${correctAnswer}` data-index=`${index}`)
+            h2= question
+            .quiz-options
+                each answer,i in answers
+                  .quiz-option(data-answer=`${i}`)= answer         
+
+block content
+    main(data-quizid=`${quiz._id}`)
+        .progress-indicator
+        //- each question,i in quiz.questions
+        //-     .question-indicator= i + 1
+        .quiz-question-container(data-correct=`${quiz.questions[0].correctAnswer}` data-index='0')
+            h2= quiz.questions[0].question
+            .quiz-options
+                each answer,i in quiz.questions[0].answers
+                  .quiz-option(data-answer=`${i}`)= answer
+        each question,i in quiz.questions 
+          if i > 0
+             +quizQuestion(question.question, question.answers, question.correctAnswer, i)
+        .completion-card.hidden
+            h2 Parabéns!
+            p Você completou o quiz.
+            a.action-btn(href=`/quiz/${quiz.slug}`) Reiniciar
+            a.action-btn(href='/') Voltar para Início

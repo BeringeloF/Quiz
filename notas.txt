@@ -1,0 +1,10 @@
+Objetivo de hoje
+
+// 1. Completar o sistemas de nivel e experiencia//Feito
+// 2. Terminar o formulario de singup//Feito
+// 3. Criar user details page com o historico de quiz completados// Feito
+// 4. Criar formulario de criar quiz//Feito
+// 5. Criar pagina para CRUD// Feito
+// 6. Adcionar filtros para os quizzes//feito?
+// 7. Adcionar barra de pesquiza//feito
+// 8. implementar funcionalidade de mudar senha é de mudar foto de perfil//feito

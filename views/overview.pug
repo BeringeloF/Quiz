@@ -1,0 +1,25 @@
+extends base
+
+mixin quizCard(title, description, slug, img, author)
+   .quiz-card
+      img.quiz-image(src=`/img/${img}`, alt="Imagem do Quiz")
+      h2= title
+      p= description
+      .author-info
+        img.author-image(src="/img/author.jpg", alt="Imagem do Autor")
+        span Autor: #{author}
+      a.start-btn(href=`/quiz/${slug}`) Iniciar
+
+
+
+block content
+    main
+      .quiz-container
+        each quiz in quizes
+          +quizCard(quiz.name, quiz.description, quiz.slug, quiz.imageCover, quiz.author.authorName)
+      .pagination-container
+        if page > 1
+          a.pagination-button(href=`${page - 1 < 2 ? '/':`/?page=${page - 1}`}`) Previous
+      
+        if !lastPage
+          a.pagination-button(href=`/?page=${page + 1}`) Next

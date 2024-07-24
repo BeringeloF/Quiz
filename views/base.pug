@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    if csrfToken
+      meta(name="csrf-token" content=`${csrfToken}`)
+    title= title 
+    link(rel='stylesheet' href='/css/style.css')
+    script( defer src='/dist/index.js')
+  body
+    include _header
+
+
+    block content
+
+    footer
+      p &copy; 2024 Quiz App. Todos os direitos reservados.
+

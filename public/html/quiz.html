@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz Pergunta</title>
+  </head>
+  <body>
+    <header>
+      <div class="header-container">
+        <h1>Quiz de História</h1>
+        <div class="auth-buttons">
+          <button class="auth-btn">Login</button>
+          <button class="auth-btn">Sign Up</button>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="progress-indicator">
+        <div class="question-indicator" id="indicator-1">1</div>
+        <div class="question-indicator" id="indicator-2">2</div>
+        <div class="question-indicator" id="indicator-3">3</div>
+        <div class="question-indicator" id="indicator-4">4</div>
+      </div>
+      <div class="quiz-question-container">
+        <h2>Quem foi o primeiro presidente dos Estados Unidos?</h2>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="checkAnswer(this, false, 1)">
+            Thomas Jefferson
+          </button>
+          <button class="quiz-option" onclick="checkAnswer(this, true, 1)">
+            George Washington university football division that produces the
+            most profit of purple in the house for a while now I have to die
+          </button>
+          <button class="quiz-option" onclick="checkAnswer(this, false, 1)">
+            John Adams
+          </button>
+          <button class="quiz-option" onclick="checkAnswer(this, false, 1)">
+            Benjamin Franklin
+          </button>
+        </div>
+        <button class="next-btn" onclick="nextQuestion()">
+          Próxima Pergunta
+        </button>
+      </div>
+    </main>
+
+    <script>
+      function updateIndicator(questionNumber, isCorrect) {
+        const indicator = document.getElementById(
+          `indicator-${questionNumber}`
+        );
+        if (isCorrect) {
+          indicator.classList.add("correct");
+        } else {
+          indicator.classList.add("incorrect");
+        }
+      }
+
+      function checkAnswer(button, isCorrect, questionNumber) {
+        if (isCorrect) {
+          button.classList.add("correct");
+        } else {
+          button.classList.add("incorrect");
+        }
+        // Desabilitar todos os botões após a escolha
+        const buttons = document.querySelectorAll(".quiz-option");
+        buttons.forEach((btn) => (btn.disabled = true));
+        updateIndicator(questionNumber, isCorrect);
+      }
+
+      function nextQuestion() {
+        // Função para ir para a próxima pergunta
+        alert("Próxima pergunta!");
+        // Aqui você pode adicionar a lógica para carregar a próxima pergunta
+      }
+    </script>
+  </body>
+</html>

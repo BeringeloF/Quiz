@@ -1,0 +1,25 @@
+extends base 
+
+mixin miniQuizCard(img, name, author, id)
+  .quiz-mini-card(data-id=`${id}`)
+        img.quiz-thumbnail(src=`/img/${img}` alt="Quiz Thumbnail")
+        .quiz-mini-info
+            h3.quiz-mini-title= name
+            p.quiz--mini-author by #{author}
+            .quiz-actions
+                a(href=`/editQuiz/${id}`).edit-button Edit
+                a.delete-button Delete
+
+block content
+
+ main 
+  section.manage-quizzes
+    h2 Manage Quizzes
+    each quiz in quizzes 
+      +miniQuizCard(quiz.imageCover, quiz.name, quiz.author.authorName, quiz._id)
+    #delete-confirmation.confirmation-popup
+      .popup-content
+        h3 Are you sure you want to delete this quiz?
+        .popup-actions
+          button.confirm-button Yes, Delete
+          button.cancel-button Cancel

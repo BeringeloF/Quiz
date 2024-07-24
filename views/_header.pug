@@ -1,0 +1,32 @@
+header(class=`${user ? 'logged-in-header': ''}`)
+    div.header-container
+       
+       a(href="/") 
+        h1 Quiz Application
+       .search-container
+         input#search-input(type="text" placeholder="Search quizzes...")
+         button.search-btn &#128269;
+           
+
+       if !user
+          div.auth-buttons
+            a.auth-btn(href='/login') Login
+            a.auth-btn(href='/singup') Sing Up
+       else 
+         .profile-container.absolute-right
+            a(href="/userDetails")
+             img.profile-picture(src=`/img/${user.photo}`, alt="Profile Picture")
+            .profile-info 
+              span.username= user.name.split(' ')[0]
+              span.user-level Lv #{user.level}
+       .dropdown-menu#dropdown-menu
+          a(href="/userDetails") Account
+          a(href="/createQuiz") Create Quiz
+          a(href="/manageQuiz") Manage Quiz
+          a(href="/top-five-most-popular") Quizzes mais populares
+
+
+           
+
+
+ 

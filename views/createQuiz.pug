@@ -1,0 +1,126 @@
+extends base
+
+
+block content 
+ main
+  .create-quiz-container
+   form.create-quiz-form(enctype="multipart/form-data")
+    h2 Create New Quiz
+    .form-group
+      label(for="name") Quiz Name
+      input#name(type="text" name="name" )
+    .form-group
+      label(for="difficulty") Difficulty
+      select#difficulty(name="difficulty" )
+        option(value="easy") Easy
+        option(value="medium") Medium
+        option(value="hard") Hard
+    .form-group
+      label(for="category") Category
+      input#category(type="text" name="category" )
+    .form-group
+      label(for="description") Description
+      textarea#description(name="description" rows="4" )
+    .form-group
+      label(for="image") Image
+      input#image(type="file" name="imageCover")
+    #questions-container
+      .question-group(data-question='0')
+        p Marque a caixa correspondente a resposta correta em cada questao
+        h3 Question 1
+        .form-group
+          label(for="question-1") Question
+          input#question-1(type="text" name="questions[0][question]" )
+        .answers-group
+          label Answers
+          .answer
+            input(type="text" name="questions[0][answers][]" )
+            input(type="radio" name="questions[0][correct_answer]" value="0" )
+          .answer
+            input(type="text" name="questions[0][answers][]" )
+            input(type="radio" name="questions[0][correct_answer]" value="1" )
+          .answer
+            input(type="text" name="questions[0][answers][]" )
+            input(type="radio" name="questions[0][correct_answer]" value="2" )
+          .answer
+            input(type="text" name="questions[0][answers][]" )
+            input(type="radio" name="questions[0][correct_answer]" value="3" )
+      .question-group(data-question='1')
+        h3 Question 2
+        .form-group
+          label(for="question-2") Question
+          input#question-2(type="text" name="questions[1][question]" )
+        .answers-group
+          label Answers
+          .answer
+            input(type="text" name="questions[1][answers][]" )
+            input(type="radio" name="questions[1][correct_answer]" value="0" )
+          .answer
+            input(type="text" name="questions[1][answers][]" )
+            input(type="radio" name="questions[1][correct_answer]" value="1" )
+          .answer
+            input(type="text" name="questions[1][answers][]" )
+            input(type="radio" name="questions[1][correct_answer]" value="2" )
+          .answer
+            input(type="text" name="questions[1][answers][]" )
+            input(type="radio" name="questions[1][correct_answer]" value="3" )
+      .question-group(data-question='2')
+        h3 Question 3
+        .form-group
+          label(for="question-3") Question
+          input#question-3(type="text" name="questions[2][question]" )
+        .answers-group
+          label Answers
+          .answer
+            input(type="text" name="questions[2][answers][]" )
+            input(type="radio" name="questions[2][correct_answer]" value="0" )
+          .answer
+            input(type="text" name="questions[2][answers][]" )
+            input(type="radio" name="questions[2][correct_answer]" value="1" )
+          .answer
+            input(type="text" name="questions[2][answers][]" )
+            input(type="radio" name="questions[2][correct_answer]" value="2" )
+          .answer
+            input(type="text" name="questions[2][answers][]" )
+            input(type="radio" name="questions[2][correct_answer]" value="3" )
+      .question-group(data-question='3')
+        h3 Question 4
+        .form-group
+          label(for="question-4") Question
+          input#question-4(type="text" name="questions[3][question]" )
+        .answers-group
+          label Answers
+          .answer
+            input(type="text" name="questions[3][answers][]" )
+            input(type="radio" name="questions[3][correct_answer]" value="0" )
+          .answer
+            input(type="text" name="questions[3][answers][]" )
+            input(type="radio" name="questions[3][correct_answer]" value="1" )
+          .answer
+            input(type="text" name="questions[3][answers][]" )
+            input(type="radio" name="questions[3][correct_answer]" value="2" )
+          .answer
+            input(type="text" name="questions[3][answers][]" )
+            input(type="radio" name="questions[3][correct_answer]" value="3" )
+      .question-group(data-question='4')
+        h3 Question 5
+        .form-group
+          label(for="question-5") Question
+          input#question-5(type="text" name="questions[4][question]" )
+        .answers-group
+          label Answers
+          .answer
+            input(type="text" name="questions[4][answers][]" )
+            input(type="radio" name="questions[4][correct_answer]" value="0" )
+          .answer
+            input(type="text" name="questions[4][answers][]" )
+            input(type="radio" name="questions[4][correct_answer]" value="1" )
+          .answer
+            input(type="text" name="questions[4][answers][]" )
+            input(type="radio" name="questions[4][correct_answer]" value="2" )
+          .answer
+            input(type="text" name="questions[4][answers][]" )
+            input(type="radio" name="questions[4][correct_answer]" value="3" )
+    button#add-question-btn(type="button") Add Question
+    button.create-quiz-btn(type="submit") Create Quiz
+

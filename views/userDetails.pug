@@ -1,0 +1,23 @@
+extends base
+
+
+block content
+ main
+  section.user-details
+    form.user-info(enctype="multipart/form-data")
+        h2= user.name
+        img.profile-picture-large(src=`/img/${user.photo}`, alt="Profile Picture")
+        .form-group
+          label(for="image") New profile photo
+          input#image(type="file" name="photo"  accept='image/*')
+          button.new-photo-btn(style='margin-top: 12px;') Change photo
+    .quiz-history
+        h3 Quiz History
+        ul.quiz-list
+          if user.history && user.history.length > 0
+              each quiz in user.history
+                li.quiz-item #{quiz.quiz.name} - Score: #{quiz.correctAnswers}/#{quiz.totalQuestions}
+                  span.date=  new Date(quiz.completedAt).toLocaleDateString()
+           
+    .change-password
+        a.change-password-link(href="/changePassword") Change Password
