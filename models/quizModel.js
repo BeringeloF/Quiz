@@ -41,7 +41,7 @@ const quizSchema = new Schema({
     type: String,
     required: [true, "a quiz must have a name"],
     trim: true,
-    maxLength: [40, "A quiz name must have less or equal then 40 caracters"],
+    maxLength: [50, "A quiz name must have less or equal then 50 caracters"],
     minLength: [8, "A quiz name must have more or equal then 8 caracters"],
   },
   description: {

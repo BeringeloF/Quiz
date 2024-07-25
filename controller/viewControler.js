@@ -85,11 +85,35 @@ exports.getManageQuiz = async (req, res, next) => {
       "author.user": req.user._id,
     };
   }
-  const quizzes = await Quiz.find(filter);
+
+  let page = (+req.query.page || 1) - 1;
+
+  if (page < 0) page = 0;
+
+  const limit = 10;
+
+  const quizes = await Quiz.find(filter)
+    .skip(page * limit)
+    .limit(limit + 1);
+
+  if (quizes.length === 0) {
+    return next(
+      new AppError("Oops! The page you are looking for does not exist.", 404)
+    );
+  }
+
+  let lastPage;
+
+  if (quizes.length !== 11) {
+    lastPage = true;
+  }
+  page++;
 
   res.status(200).render("manageQuiz", {
     title: "Manage Quizzes",
-    quizzes,
+    quizzes: quizes.slice(0, 10),
+    lastPage,
+    page,
   });
 };
 

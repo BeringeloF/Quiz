@@ -10,7 +10,7 @@ export const deleteQuiz = async (id, csrfToken) => {
       },
     });
 
-    location.assign("/manageQuiz");
+    location.assign(window.location.href);
   } catch (err) {
     console.log(err);
   }

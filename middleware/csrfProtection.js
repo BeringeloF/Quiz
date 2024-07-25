@@ -19,9 +19,6 @@ exports.checkCsrf = (req, res, next) => {
   const submittedToken = req.body.csrfToken;
   const cookieToken = req.cookies.csrfToken; // Obtenha o token do cookie
 
-  console.log(submittedToken, cookieToken);
-  console.log("outro body", req.body);
-
   if (!submittedToken || submittedToken !== cookieToken) {
     return next(new AppError("invalid request!", 403));
   }

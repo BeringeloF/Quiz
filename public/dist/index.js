@@ -811,6 +811,7 @@ const updateQuiz = async (data, id)=>{
             data
         });
         console.log(res);
+        location.assign("/");
     } catch (err) {
         console.log(err);
     }
@@ -5675,7 +5676,7 @@ const deleteQuiz = async (id, csrfToken)=>{
                 csrfToken
             }
         });
-        console.log(res);
+        location.assign(window.location.href);
     } catch (err) {
         console.log(err);
     }
@@ -5698,6 +5699,7 @@ const updatePassword = async (data, csrfToken)=>{
             }
         });
         console.log(res);
+        location.assign("/");
     } catch (err) {
         console.log(err);
     }

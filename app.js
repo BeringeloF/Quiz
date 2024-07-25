@@ -9,6 +9,7 @@ const mongoSanitize = require("express-mongo-sanitize");
 const morgan = require("morgan");
 const rateLimit = require("express-rate-limit");
 const { sanitizeXss } = require("./middleware/sanitizeXss");
+const compression = require("compression");
 const app = express();
 
 //setting the templetes engine
@@ -16,36 +17,13 @@ app.set("view engine", "pug");
 app.set("views", `${process.env.PWD}/views`);
 
 //parsing the body of the request
-app.use(express.json());
+app.use(express.json({ limit: "10kb" }));
 app.use(
   express.urlencoded({
     extended: true,
     limit: "10kb",
   })
 );
-
-// app.use((req, res, next) => {
-//   req.on("data", (chunk) => {
-//     console.log("Chunk received:", chunk.toString());
-//   });
-
-//   req.on("end", () => {
-//     console.log("Request body:", req.body);
-//     console.log(req.headers);
-//   });
-//   next();
-// });
-
-// const upload = multer(); // Pasta onde os arquivos serão armazenados
-
-// // Middleware para processar dados multipart/form-data
-// app.use(upload.none()); // Para processar apenas campos de texto e não arquivos
-
-app.use((req, res, next) => {
-  console.log("body2", req.rawBody);
-  console.log("Request Body:", req.body);
-  next();
-});
 
 //sanitize xss
 app.use(sanitizeXss);
@@ -60,9 +38,10 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
-//set security headers
+//setting security headers
 app.use(helmet());
 
+//setting cors
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*"); // Permite qualquer origem
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS"); // Métodos permitidos
@@ -90,6 +69,8 @@ const limiter = rateLimit({
 
 //limit requests per id address
 app.use("/api", limiter);
+
+app.use(compression());
 
 //protect against noSql injection
 app.use(mongoSanitize());

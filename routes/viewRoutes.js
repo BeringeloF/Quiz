@@ -15,12 +15,17 @@ router.get("/quiz/:slug", viewControler.getQuizPage);
 router.get("/login", viewControler.getLoginForm);
 router.get("/singup", viewControler.getSingupForm);
 
-router.get("/userDetails", authControler.protect, viewControler.getUserDetails);
+router.get(
+  "/userDetails",
+  authControler.protect,
+  csrfProtection,
+  viewControler.getUserDetails
+);
 
 router.get(
   "/createQuiz",
-  csrfProtection,
   authControler.protect,
+  csrfProtection,
   viewControler.getCreateQuizForm
 );
 

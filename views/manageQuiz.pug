@@ -17,6 +17,12 @@ block content
     h2 Manage Quizzes
     each quiz in quizzes 
       +miniQuizCard(quiz.imageCover, quiz.name, quiz.author.authorName, quiz._id)
+    .pagination-container
+        if page > 1
+          a.pagination-button(href=`${page - 1 < 2 ? '/manageQuiz':`/manageQuiz?page=${page - 1}`}`) Previous
+      
+        if !lastPage
+          a.pagination-button(href=`/manageQuiz?page=${page + 1}`) Next
     #delete-confirmation.confirmation-popup
       .popup-content
         h3 Are you sure you want to delete this quiz?

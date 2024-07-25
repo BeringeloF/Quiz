@@ -10,14 +10,14 @@ const {
 const router = express.Router();
 
 router.route("/").get(quizControler.getAllQuiz).post(
-  authControler.protect,
-  quizControler.uploadQuizImage, //Quando vc for lidar com multipartData vc deve usar um middleware que fassa o parse deste data
-  //caso contrario vc nao tera acesso a ele, por exemplo antes de vc fazer o parse o req.body estara vazio. Entao o que middleware
-  //uploadQuizImage faz nao é apenas o upload da imagem mais sim tambem o parse do data do formulario
-  checkCsrf,
-  quizValidators,
-  validateAndProcess,
-  quizControler.resizeQuizImage,
+  // authControler.protect,
+  // quizControler.uploadQuizImage, //Quando vc for lidar com multipartData vc deve usar um middleware que fassa o parse deste data
+  // //caso contrario vc nao tera acesso a ele, por exemplo antes de vc fazer o parse o req.body estara vazio. Entao o que middleware
+  // //uploadQuizImage faz nao é apenas o upload da imagem mais sim tambem o parse do data do formulario
+  // checkCsrf,
+  // quizValidators,
+  // validateAndProcess,
+  // quizControler.resizeQuizImage,
   quizControler.createQuiz
 );
 
