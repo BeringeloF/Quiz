@@ -38,6 +38,11 @@ exports.getUser = catchAsync(async (req, res, next) => {
 });
 
 exports.deleteUser = catchAsync(async (req, res, next) => {
+  if (req.user._id !== req.params.userId || req.user.role !== "admin")
+    return next(
+      new AppError("you do not have permission to perform this action!", 403)
+    );
+
   await User.findByIdAndDelete(req.params.userId);
 
   res.status(200).json({
@@ -53,6 +58,11 @@ exports.updateUser = catchAsync(async (req, res, next) => {
         "this route is not suposed to be used to change password!",
         400
       )
+    );
+
+  if (req.user._id !== req.params.userId || req.user.role !== "admin")
+    return next(
+      new AppError("you do not have permission to perform this action!", 403)
     );
 
   const { email, name } = req.body;

@@ -36,7 +36,7 @@ router.patch(
 router
   .route("/:userId")
   .get(userControler.getUser)
-  .delete(userControler.deleteUser)
-  .patch(checkEmail(true), userControler.updateUser);
+  .delete(authControler.protect, userControler.deleteUser)
+  .patch(authControler.protect, checkEmail(true), userControler.updateUser);
 
 module.exports = router;
